@@ -1,18 +1,20 @@
 const mongoose = require("mongoose");
-const { FoodSchema } = requires("./food");
-const { ComboSchema } = requires("./combo");
 
 const SaleSchema = new mongoose.Schema({
-    soldFoods: [{
-        type: FoodSchema,
+    soldFoodsIds: [{
+        type: String,
         required: false
     }],
-    soldCombos: [{
-        type: ComboSchema,
+    soldCombosIds: [{
+        type: String,
         required: false
     }],
     price: {
         type: Number,
+        required: true
+    },
+    userId: {
+        type: String,
         required: true
     },
     date: {

@@ -1,12 +1,16 @@
 const express = require("express");
-const FoodController = require("../controller/foodsController");
+const FoodController = require("../controllers/foodsController");
 const router = express.Router();
 
 router
-.get("/getfoods", FoodController.getFoods)
-.get("/clearfoods", FoodController.clearFoods);
+.get("/getfoods", FoodController.get)
+.get("/getfoodbyid", FoodController.getById);
 
 router
-.post("/postfoods", FoodController.postFood);
+.post("/postfood", FoodController.post);
+
+router
+.delete("/clearfoods", FoodController.clear)
+.delete("/deletefood", FoodController.deleteById);
 
 module.exports = router;

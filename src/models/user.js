@@ -14,15 +14,15 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   password: {
-    type: Number,
+    type: String,
     required: true,
   },
   address: {
-    type: Number,
+    type: String,
     required: true,
   },
   isAdm: {
-    type: bool,
+    type: Boolean,
     required: true,
   }
 });

@@ -3,7 +3,7 @@ const { Food } = require("../models/food");
 require("dotenv").config();
 
 class FoodController {
-    static async getFoods(req, res) {
+    static async get(req, res) {
         try {
             const foods = await Food.find();
             return res.status(200).send({ foods });
@@ -12,7 +12,21 @@ class FoodController {
         }
     }
 
-    static async postFood(req, res) {
+    static async getById(req, res) {
+        const { foodId } = req.body;
+
+        if (!foodId)
+            return res.status(400).send({ message: 'foodId can\'t be empty' });
+
+        try {
+            const food = await Food.findById(foodId);
+            return res.status(200).send({ food });
+        } catch (error) {
+            return res.status(404).send({ error: 'Food not found!' });
+        }
+    }
+
+    static async post(req, res) {
         const { product, price, description, smallDescription, category, imagesList } = req.body;
 
         if (!product || !price || !description || !category)
@@ -24,6 +38,7 @@ class FoodController {
             description,
             smallDescription,
             category,
+            quantity: 1,
             imagesList,
             release: Date.now(),
             createdAt: Date.now(),
@@ -39,7 +54,22 @@ class FoodController {
 
     }
 
-    static async clearFoods(req, res) {
+    static async deleteById(req, res) {
+        const { foodId } = req.body;
+
+        if (!foodId)
+            return res.status(400).send({ message: 'foodId can\'t be empty' });
+
+        try {
+            await Food.findByIdAndDelete(foodId);
+            return res.status(200).send({ message: 'Food deleted successfully' });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send({ message: 'Something went wrong while clearing foods' });
+        }
+    }
+
+    static async clear(req, res) {
         try {
             await Food.deleteMany({});
             return res.status(200).send({ message: 'All foods deleted successfully' });
@@ -48,6 +78,8 @@ class FoodController {
             return res.status(500).send({ message: 'Something went wrong while clearing foods' });
         }
     }
+
+
 
 }
 

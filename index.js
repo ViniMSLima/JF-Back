@@ -2,12 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose"); // Add mongoose for MongoDB
 
+require('dotenv').config()
+
 const app = express();
 
 // MongoDB connection
 async function connectToDB() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/japanesefoodsdb", {
+    await mongoose.connect(process.env.MONGODB_CONNECT_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
