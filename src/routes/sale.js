@@ -4,7 +4,7 @@ const router = express.Router();
 
 router
 .get("/getsales", SaleController.get)
-.get("/getsalesbyid", SaleController.getById);
+.get("/getsalebyid", SaleController.getById);
 
 router
 .post("/postsale", SaleController.post);
