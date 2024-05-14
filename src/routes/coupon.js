@@ -3,14 +3,14 @@ const CouponController = require("../controllers/couponsController");
 const router = express.Router();
 
 router
-.get("/getcoupons", CouponController.get)
-.get("/getcouponbyid", CouponController.getById);
+.get("/get", CouponController.get)
+.get("/getbyid", CouponController.getById);
 
 router
-.post("/postcoupon", CouponController.post);
+.post("/post", CouponController.post);
 
 router
-.delete("/clearcoupons", CouponController.clear)
-.delete("/deletecoupon", CouponController.deleteById);
+.delete("/clear", CouponController.clear)
+.delete("/delete", CouponController.deleteById);
 
 module.exports = router;

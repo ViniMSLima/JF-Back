@@ -3,14 +3,14 @@ const UserController = require("../controllers/usersController");
 const router = express.Router();
 
 router
-.get("/getusers", UserController.get)
-.get("/getuserbyid", UserController.getById);
+.get("/get", UserController.get)
+.get("/getbyid", UserController.getById);
 
 router
-.post("/postuser", UserController.post);
+.post("/post", UserController.post);
 
 router
-.delete("/clearusers", UserController.clear)
-.delete("/deleteuser", UserController.deleteById);
+.delete("/clear", UserController.clear)
+.delete("/delete", UserController.deleteById);
 
 module.exports = router;

@@ -3,14 +3,14 @@ const ComboController = require("../controllers/combosController");
 const router = express.Router();
 
 router
-.get("/getcombos", ComboController.get)
-.get("/getcombobyid", ComboController.getById);
+.get("/get", ComboController.get)
+.get("/getbyid", ComboController.getById);
 
 router
-.post("/postcombo", ComboController.post);
+.post("/post", ComboController.post);
 
 router
-.delete("/clearcombos", ComboController.clear)
-.delete("/deletecombo", ComboController.deleteById);
+.delete("/clear", ComboController.clear)
+.delete("/delete", ComboController.deleteById);
 
 module.exports = router;

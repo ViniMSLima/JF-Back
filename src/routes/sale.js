@@ -3,14 +3,14 @@ const SaleController = require("../controllers/salesController");
 const router = express.Router();
 
 router
-.get("/getsales", SaleController.get)
-.get("/getsalebyid", SaleController.getById);
+.get("/get", SaleController.get)
+.get("/getbyid", SaleController.getById);
 
 router
-.post("/postsale", SaleController.post);
+.post("/post", SaleController.post);
 
 router
-.delete("/clearsales", SaleController.clear)
-.delete("/deletesale", SaleController.deleteById);
+.delete("/clear", SaleController.clear)
+.delete("/delete", SaleController.deleteById);
 
 module.exports = router;

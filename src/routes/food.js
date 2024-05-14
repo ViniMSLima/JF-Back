@@ -3,14 +3,14 @@ const FoodController = require("../controllers/foodsController");
 const router = express.Router();
 
 router
-.get("/getfoods", FoodController.get)
-.get("/getfoodbyid", FoodController.getById);
+.get("/get", FoodController.get)
+.get("/getbyid", FoodController.getById);
 
 router
-.post("/postfood", FoodController.post);
+.post("/post", FoodController.post);
 
 router
-.delete("/clearfoods", FoodController.clear)
-.delete("/deletefood", FoodController.deleteById);
+.delete("/clear", FoodController.clear)
+.delete("/delete", FoodController.deleteById);
 
 module.exports = router;
