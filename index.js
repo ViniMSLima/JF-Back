@@ -9,7 +9,7 @@ const app = express();
 // MongoDB connection
 async function connectToDB() {
   try {
-    await mongoose.connect("mongodb+srv://vinisarylima:aMuFJSCjBV6L4s8C@cluster0.xm12ebk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+    await mongoose.connect(process.env.MONGODB_CONNECT_URI);
     console.log("Connected to MongoDB Atlas / Compass");
   } catch (error) {
     console.error("Error connecting to MongoDB Atlas / Compass:", error);

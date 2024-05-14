@@ -13,13 +13,13 @@ class FoodController {
     }
 
     static async getById(req, res) {
-        const { foodId } = req.body;
+        const { id } = req.query;
 
-        if (!foodId)
-            return res.status(400).send({ message: 'foodId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            const food = await Food.findById(foodId);
+            const food = await Food.findById(id);
             return res.status(200).send({ food });
         } catch (error) {
             return res.status(404).send({ error: 'Food not found!' });
@@ -55,13 +55,13 @@ class FoodController {
     }
 
     static async deleteById(req, res) {
-        const { foodId } = req.body;
+        const { id } = req.query;
 
-        if (!foodId)
-            return res.status(400).send({ message: 'foodId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            await Food.findByIdAndDelete(foodId);
+            await Food.findByIdAndDelete(id);
             return res.status(200).send({ message: 'Food deleted successfully' });
         } catch (error) {
             console.error(error);
@@ -78,9 +78,6 @@ class FoodController {
             return res.status(500).send({ message: 'Something went wrong while clearing foods' });
         }
     }
-
-
-
 }
 
 module.exports = FoodController;

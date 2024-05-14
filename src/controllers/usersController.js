@@ -13,13 +13,13 @@ class UserController {
     }
 
     static async getById(req, res) {
-        const { UserId } = req.body;
+        const { id } = req.query;
 
-        if (!UserId)
-            return res.status(400).send({ message: 'UserId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            const user = await User.findById(UserId);
+            const user = await User.findById(id);
             return res.status(200).send({ user });
         } catch (error) {
             return res.status(404).send({ error: 'User not found!' });
@@ -54,13 +54,13 @@ class UserController {
     }
 
     static async deleteById(req, res) {
-        const { UserId } = req.body;
+        const { id } = req.query;
 
-        if (!UserId)
-            return res.status(400).send({ message: 'UserId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            await User.findByIdAndDelete(UserId);
+            await User.findByIdAndDelete(id);
             return res.status(200).send({ message: 'User deleted successfully' });
         } catch (error) {
             console.error(error);

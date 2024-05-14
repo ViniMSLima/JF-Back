@@ -13,13 +13,13 @@ class ComboController {
     }
 
     static async getById(req, res) {
-        const { ComboId } = req.body;
+        const { id } = req.query;
 
-        if (!ComboId)
-            return res.status(400).send({ message: 'ComboId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            const combo = await Combo.findById(ComboId);
+            const combo = await Combo.findById(id);
             return res.status(200).send({ combo });
         } catch (error) {
             return res.status(404).send({ error: 'Combo not found!' });
@@ -50,13 +50,13 @@ class ComboController {
     }
 
     static async deleteById(req, res) {
-        const { ComboId } = req.body;
+        const { id } = req.query;
 
-        if (!ComboId)
-            return res.status(400).send({ message: 'ComboId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            await Combo.findByIdAndDelete(ComboId);
+            await Combo.findByIdAndDelete(id);
             return res.status(200).send({ message: 'Combo deleted successfully' });
         } catch (error) {
             console.error(error);

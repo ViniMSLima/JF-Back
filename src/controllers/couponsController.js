@@ -13,13 +13,13 @@ class CouponController {
     }
 
     static async getById(req, res) {
-        const { CouponId } = req.body;
+        const { id } = req.query;
 
-        if (!CouponId)
-            return res.status(400).send({ message: 'CouponId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            const coupon = await Coupon.findById(CouponId);
+            const coupon = await Coupon.findById(id);
             return res.status(200).send({ coupon });
         } catch (error) {
             return res.status(404).send({ error: 'Coupon not found!' });
@@ -49,13 +49,13 @@ class CouponController {
     }
 
     static async deleteById(req, res) {
-        const { CouponId } = req.body;
+        const { id } = req.query;
 
-        if (!CouponId)
-            return res.status(400).send({ message: 'CouponId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            await Coupon.findByIdAndDelete(CouponId);
+            await Coupon.findByIdAndDelete(id);
             return res.status(200).send({ message: 'Coupon deleted successfully' });
         } catch (error) {
             console.error(error);

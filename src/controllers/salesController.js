@@ -13,13 +13,13 @@ class SaleController {
     }
 
     static async getById(req, res) {
-        const { saleId } = req.body;
+        const { id } = req.query;
 
-        if (!saleId)
-            return res.status(400).send({ message: 'saleId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            const sale = await Food.findById(saleId);
+            const sale = await Food.findById(id);
             return res.status(200).send({ sale });
         } catch (error) {
             return res.status(404).send({ error: 'sale not found!' });
@@ -52,13 +52,13 @@ class SaleController {
     }
 
     static async deleteById(req, res) {
-        const { saleId } = req.body;
+        const { id } = req.query;
 
-        if (!saleId)
-            return res.status(400).send({ message: 'saleId can\'t be empty' });
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
 
         try {
-            await Sale.findByIdAndDelete(saleId);
+            await Sale.findByIdAndDelete(id);
             return res.status(200).send({ message: 'Sale deleted successfully' });
         } catch (error) {
             console.error(error);
@@ -75,9 +75,6 @@ class SaleController {
             return res.status(500).send({ message: 'Something went wrong while clearing sales' });
         }
     }
-
-
-
 }
 
 module.exports = SaleController;
