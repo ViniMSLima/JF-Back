@@ -8,6 +8,26 @@ const ComboSchema = new mongoose.Schema({
     imagesList: {
         type: [String],
         required: true,
+    },
+    product: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    smallDescription: {
+        type: String,
+        required: true,
+    },
+    quantity: {
+        type: Number,
+        required: true,
     }
 });
 
