@@ -27,7 +27,7 @@ class ComboController {
     }
 
     static async post(req, res) {
-        const { productsIds, imagesList, price, description, product, smallDescription } = req.body;
+        const { productsIds, imagesList, price, description, name, smallDescription } = req.body;
 
         if (!productsIds || !imagesList)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
@@ -37,7 +37,7 @@ class ComboController {
             imagesList,
             price,
             description,
-            product,
+            name,
             smallDescription,
             quantity: 0,
             release: Date.now(),

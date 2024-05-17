@@ -9,7 +9,7 @@ const ComboSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
-    product: {
+    name: {
         type: String,
         required: true
     },
