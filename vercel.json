@@ -19,6 +19,7 @@
         { "src": "/combo/post", "dest": "/" },
         { "src": "/combo/clear", "dest": "/" },
         { "src": "/combo/delete", "dest": "/" },
+        { "src": "/combo/update", "dest": "/" },
         { "src": "/coupon/get", "dest": "/" },
         { "src": "/coupon/getbyid", "dest": "/" },
         { "src": "/coupon/post", "dest": "/" },
@@ -28,6 +29,7 @@
         { "src": "/user/getbyid", "dest": "/" },
         { "src": "/user/post", "dest": "/" },
         { "src": "/user/clear", "dest": "/" },
-        { "src": "/user/delete", "dest": "/" }
+        { "src": "/user/delete", "dest": "/" },
+        { "src": "/user/update", "dest": "/" }
       ]
 }

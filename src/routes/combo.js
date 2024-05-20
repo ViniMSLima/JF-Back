@@ -10,6 +10,9 @@ router
 .post("/post", ComboController.post);
 
 router
+.patch("/update", ComboController.updateById);
+
+router
 .delete("/clear", ComboController.clear)
 .delete("/delete", ComboController.deleteById);
 

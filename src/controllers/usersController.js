@@ -77,6 +77,40 @@ class UserController {
             return res.status(500).send({ message: 'Something went wrong while clearing Users' });
         }
     }
+
+    static async updateById(req, res) {
+        const { id } = req.body;
+        const { fullName, cpf, email, password, address, isAdm } = req.body;
+
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
+
+        if (!fullName || !cpf || !email || !password || !address || !isAdm)
+            return res.status(400).send({ message: 'Field\'s can\'t be empty' });
+
+        try {
+            const user = await User.findById(id);
+
+            if (!user) {
+                return res.status(404).send({ message: 'user not found!' });
+            }
+
+            user.fullName = fullName;
+            user.cpf = cpf;
+            user.email = email;
+            user.password = password;
+            user.address = address;
+            user.isAdm = isAdm;
+            user.updatedAt = Date.now();
+
+            await user.save();
+
+            return res.status(200).send({ message: 'user updated successfully' });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send({ message: 'Something went wrong while updating the user' });
+        }
+    }
 }
 
 module.exports = UserController;

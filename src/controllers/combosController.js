@@ -78,6 +78,41 @@ class ComboController {
             return res.status(500).send({ message: 'Something went wrong while clearing Combos' });
         }
     }
+
+    static async updateById(req, res) {
+        const { id } = req.body;
+        const { productsIds, imagesList, price, description, name, smallDescription } = req.body;
+
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
+
+        if (!productsIds || !imagesList || !name || !description || !price || !smallDescription)
+            return res.status(400).send({ message: 'Field\'s can\'t be empty' });
+
+        try {
+            const combo = await Combo.findById(id);
+
+            if (!combo) {
+                return res.status(404).send({ message: 'combo not found!' });
+            }
+
+            combo.productsIds = productsIds;
+            combo.imagesList = imagesList;
+            combo.name = name;
+            combo.description = description;
+            combo.category = category;
+            combo.price = price;
+            combo.smallDescription = smallDescription;
+            combo.updatedAt = Date.now();
+
+            await combo.save();
+
+            return res.status(200).send({ message: 'combo updated successfully' });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send({ message: 'Something went wrong while updating the combo' });
+        }
+    }
 }
 
 module.exports = ComboController;

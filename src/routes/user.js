@@ -10,6 +10,9 @@ router
 .post("/post", UserController.post);
 
 router
+.patch("/update", UserController.updateById);
+
+router
 .delete("/clear", UserController.clear)
 .delete("/delete", UserController.deleteById);
 
