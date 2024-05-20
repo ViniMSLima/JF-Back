@@ -98,11 +98,11 @@ class ComboController {
 
             combo.productsIds = productsIds;
             combo.imagesList = imagesList;
-            combo.name = name;
-            combo.description = description;
-            combo.category = category;
-            combo.price = price;
-            combo.smallDescription = smallDescription;
+            // combo.name = name;
+            // combo.description = description;
+            // combo.category = category;
+            // combo.price = price;
+            // combo.smallDescription = smallDescription;
             // combo.updatedAt = Date.now();
 
             await combo.save();
@@ -110,7 +110,7 @@ class ComboController {
             return res.status(200).send({ message: 'combo updated successfully' });
         } catch (error) {
             console.error(error);
-            return res.status(500).send({ message: 'Something went wrong while updating the combo' });
+            return res.status(500).send({ message: error });
         }
     }
 }
