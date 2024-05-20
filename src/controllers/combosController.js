@@ -103,7 +103,7 @@ class ComboController {
             combo.category = category;
             combo.price = price;
             combo.smallDescription = smallDescription;
-            combo.updatedAt = Date.now();
+            // combo.updatedAt = Date.now();
 
             await combo.save();
 
