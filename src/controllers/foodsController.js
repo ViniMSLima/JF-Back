@@ -80,8 +80,8 @@ class FoodController {
     }
 
     static async updateById(req, res) {
-        const { id } = req.query;
-        const { product, price, description, smallDescription, category, imagesList, quantity } = req.body;
+        const { id } = req.body;
+        const { product, price, description, smallDescription, category, imagesList } = req.body;
 
         if (!id)
             return res.status(400).send({ message: 'id can\'t be empty' });
@@ -102,7 +102,6 @@ class FoodController {
             food.smallDescription = smallDescription;
             food.category = category;
             food.imagesList = imagesList;
-            food.quantity = quantity !== undefined ? quantity : food.quantity;
             food.updatedAt = Date.now();
 
             await food.save();
