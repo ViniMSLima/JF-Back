@@ -8,6 +8,7 @@
         { "src": "/food/post", "dest": "/" },
         { "src": "/food/clear", "dest": "/" },
         { "src": "/food/delete", "dest": "/" },
+        { "src": "/food/update", "dest": "/" },
         { "src": "/sale/get", "dest": "/" },
         { "src": "/sale/getbyid", "dest": "/" },
         { "src": "/sale/post", "dest": "/" },

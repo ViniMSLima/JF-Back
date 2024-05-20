@@ -10,6 +10,9 @@ router
 .post("/post", FoodController.post);
 
 router
+.patch("/update", FoodController.updateById);
+
+router
 .delete("/clear", FoodController.clear)
 .delete("/delete", FoodController.deleteById);
 

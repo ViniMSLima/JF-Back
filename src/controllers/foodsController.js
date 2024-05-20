@@ -78,6 +78,41 @@ class FoodController {
             return res.status(500).send({ message: 'Something went wrong while clearing foods' });
         }
     }
+
+    static async updateById(req, res) {
+        const { id } = req.query;
+        const { product, price, description, smallDescription, category, imagesList, quantity } = req.body;
+
+        if (!id)
+            return res.status(400).send({ message: 'id can\'t be empty' });
+
+        if (!product || !price || !description || !category)
+            return res.status(400).send({ message: 'Field\'s can\'t be empty' });
+
+        try {
+            const food = await Food.findById(id);
+
+            if (!food) {
+                return res.status(404).send({ message: 'Food not found!' });
+            }
+
+            food.product = product;
+            food.price = price;
+            food.description = description;
+            food.smallDescription = smallDescription;
+            food.category = category;
+            food.imagesList = imagesList;
+            food.quantity = quantity !== undefined ? quantity : food.quantity;
+            food.updatedAt = Date.now();
+
+            await food.save();
+
+            return res.status(200).send({ message: 'Food updated successfully' });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send({ message: 'Something went wrong while updating the food' });
+        }
+    }
 }
 
 module.exports = FoodController;
