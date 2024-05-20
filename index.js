@@ -21,7 +21,7 @@ connectToDB(); // Call the function to connect to MongoDB
 app.use(
   cors({
     origin: true,
-    methods: "GET,POST,DELETE",
+    methods: "GET,POST,DELETE,PUT,PATCH",
     preflightContinue: false,
     optionsSuccessStatus: 204
   })
