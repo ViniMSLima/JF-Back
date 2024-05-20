@@ -27,13 +27,13 @@ class FoodController {
     }
 
     static async post(req, res) {
-        const { product, price, description, smallDescription, category, imagesList } = req.body;
+        const { name, price, description, smallDescription, category, imagesList } = req.body;
 
-        if (!product || !price || !description || !category)
+        if (!name || !price || !description || !category)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
         const food = new Food({
-            product,
+            name,
             price,
             description,
             smallDescription,
@@ -81,12 +81,12 @@ class FoodController {
 
     static async updateById(req, res) {
         const { id } = req.body;
-        const { product, price, description, smallDescription, category, imagesList } = req.body;
+        const { name, price, description, smallDescription, category, imagesList } = req.body;
 
         if (!id)
             return res.status(400).send({ message: 'id can\'t be empty' });
 
-        if (!product || !price || !description || !category)
+        if (!name || !price || !description || !category)
             return res.status(400).send({ message: 'Field\'s can\'t be empty' });
 
         try {
@@ -96,7 +96,7 @@ class FoodController {
                 return res.status(404).send({ message: 'Food not found!' });
             }
 
-            food.product = product;
+            food.name = name;
             food.price = price;
             food.description = description;
             food.smallDescription = smallDescription;
