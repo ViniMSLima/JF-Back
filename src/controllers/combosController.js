@@ -98,12 +98,11 @@ class ComboController {
 
             combo.productsIds = productsIds;
             combo.imagesList = imagesList;
-            // combo.name = name;
-            // combo.description = description;
-            // combo.category = category;
-            // combo.price = price;
-            // combo.smallDescription = smallDescription;
-            // combo.updatedAt = Date.now();
+            combo.name = name;
+            combo.description = description;
+            combo.price = price;
+            combo.smallDescription = smallDescription;
+            combo.updatedAt = Date.now();
 
             await combo.save();
 
