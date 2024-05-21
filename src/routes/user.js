@@ -8,7 +8,7 @@ router
 
 router
 .post("/post", UserController.post)
-.post('/login', UserController.login);
+.post("/login", UserController.login);
 
 router
 .patch("/update", UserController.updateById);

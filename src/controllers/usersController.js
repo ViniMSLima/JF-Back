@@ -32,28 +32,31 @@ class UserController {
         const { fullName, cpf, email, password, address, isAdm } = req.body;
 
         if (!fullName || !cpf || !email || !password)
-            return res.status(400).send({ message: 'Field\'s can\'t be empty' });
-
-        const user = new User({
-            fullName,
-            cpf,
-            email,
-            password,
-            address,
-            isAdm,
-            release: Date.now(),
-            createdAt: Date.now(),
-        });
+            return res.status(400).send({ message: 'Fields can\'t be empty' });
 
         try {
+            // Hash the password before saving
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            const user = new User({
+                fullName,
+                cpf,
+                email,
+                password: hashedPassword,
+                address,
+                isAdm,
+                release: Date.now(),
+                createdAt: Date.now(),
+            });
+
             await user.save();
             res.status(201).send({ message: 'User registered successfully' });
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return res.status(500).send({ message: 'Something failed while creating a User' });
         }
-
     }
+
 
     static async deleteById(req, res) {
         const { id } = req.query;

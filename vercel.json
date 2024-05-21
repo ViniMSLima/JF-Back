@@ -30,6 +30,7 @@
         { "src": "/user/post", "dest": "/" },
         { "src": "/user/clear", "dest": "/" },
         { "src": "/user/delete", "dest": "/" },
-        { "src": "/user/update", "dest": "/" }
+        { "src": "/user/update", "dest": "/" },
+        { "src": "/user/login", "dest": "/" }
       ]
 }
