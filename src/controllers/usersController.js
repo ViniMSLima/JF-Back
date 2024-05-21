@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const CryptoJS = require('crypto-js');
 const { User } = require("../models/user");
 
 require("dotenv").config();
@@ -129,15 +130,23 @@ class UserController {
                 return res.status(404).send({ message: 'User not found!' });
             }
 
-            const bytes = CryptoJS.AES.decrypt(encryptedBase64, process.env.JWT_SECRET);
+            // Decrypt the password
+
+            const bytes = CryptoJS.AES.decrypt(password, process.env.JWT_SECRET);
             const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
 
+            // Compare the decrypted password with the stored hashed password
             const isPasswordValid = await bcrypt.compare(decryptedPassword, user.password);
             if (!isPasswordValid) {
                 return res.status(401).send({ message: 'Invalid password!' });
             }
 
-            const token = jwt.sign({ id: user._id, name: user.name, email: user.email, isAdm: user.isAdm }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            // Generate JWT token
+            const token = jwt.sign(
+                { id: user._id, name: user.name, email: user.email, isAdm: user.isAdm },
+                process.env.JWT_SECRET,
+                { expiresIn: '1h' }
+            );
 
             return res.status(200).send({ message: 'Login successful', token });
         } catch (error) {
