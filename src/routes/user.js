@@ -7,7 +7,8 @@ router
 .get("/getbyid", UserController.getById);
 
 router
-.post("/post", UserController.post);
+.post("/post", UserController.post)
+.post('/login', UserController.login);
 
 router
 .patch("/update", UserController.updateById);
@@ -15,5 +16,7 @@ router
 router
 .delete("/clear", UserController.clear)
 .delete("/delete", UserController.deleteById);
+
+
 
 module.exports = router;
