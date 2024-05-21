@@ -129,7 +129,8 @@ class UserController {
                 return res.status(404).send({ message: 'User not found!' });
             }
 
-            const decryptedPassword = CryptoJS.AES.decrypt(encryptedBase64, process.env.JWT_SECRET);
+            const bytes = CryptoJS.AES.decrypt(encryptedBase64, process.env.JWT_SECRET);
+            const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
 
             const isPasswordValid = await bcrypt.compare(decryptedPassword, user.password);
             if (!isPasswordValid) {
