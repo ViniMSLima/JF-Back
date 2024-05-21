@@ -132,7 +132,7 @@ class UserController {
 
             // Decrypt the password
 
-            const bytes = CryptoJS.AES.decrypt(password, process.env.JWT_SECRET);
+            const bytes = CryptoJS.AES.decrypt(password, 'mikumikubeam');
             const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
 
             // Compare the decrypted password with the stored hashed password
@@ -144,7 +144,7 @@ class UserController {
             // Generate JWT token
             const token = jwt.sign(
                 { id: user._id, name: user.name, email: user.email, isAdm: user.isAdm },
-                process.env.JWT_SECRET,
+                'mikumikubeam',
                 { expiresIn: '1h' }
             );
 
