@@ -143,7 +143,7 @@ class UserController {
 
             // Generate JWT token
             const token = jwt.sign(
-                { id: user._id, name: user.name, email: user.email, isAdm: user.isAdm },
+                { id: user._id, name: user.fullName, email: user.email, isAdm: user.isAdm },
                 'mikumikubeam',
                 { expiresIn: '1h' }
             );
